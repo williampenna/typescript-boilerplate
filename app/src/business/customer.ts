@@ -3,6 +3,7 @@ import CODE_MESSAGES from '../constants/codeMessages';
 import { CustomerInterface } from '../interfaces/customer';
 import CustomerRepository from '../repository/customer';
 import { CodeMessagesInterface } from '../interfaces/codeMessages';
+import NotFoundError from '../exceptions/notFoundError';
 
 class CustomerBusiness {
   customerRepository: CustomerRepository;
@@ -17,6 +18,7 @@ class CustomerBusiness {
    */
   async getById(customerId: string): Promise<CustomerInterface> {
     const customerResponse = await this.customerRepository.getById(customerId);
+    if (!customerResponse.Item) throw new NotFoundError(CODE_MESSAGES.CUSTOMER_NOT_FOUND);
     return customerResponse.Item as CustomerInterface;
   }
 

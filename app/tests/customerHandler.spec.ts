@@ -5,7 +5,7 @@ import { APIGatewayEvent } from 'aws-lambda';
 import { getById, register } from '../src/handler/customer';
 
 describe('Tests suit - Customer Handler.', () => {
-  it('SUCESS: Should create customer successfully.', async () => {
+  it('SUCESS: Should get customer by ID.', async () => {
     const event = {
       pathParameters: {
         customer_id: 'TDD_WILL',
@@ -15,7 +15,7 @@ describe('Tests suit - Customer Handler.', () => {
     expect(response.statusCode).to.equal(200);
   });
 
-  it('SUCESS: Should get customer by ID.', async () => {
+  it('SUCESS: Should create customer successfully.', async () => {
     const event = {
       body: JSON.stringify({
         name: 'William Penna',
@@ -24,5 +24,15 @@ describe('Tests suit - Customer Handler.', () => {
     } as APIGatewayEvent;
     const response = await register(event);
     expect(response.statusCode).to.equal(201);
+  });
+
+  it('FAIL: Should get customer by ID that does not exist.', async () => {
+    const event = {
+      pathParameters: {
+        customer_id: 'USER_NOT_EXISTS',
+      },
+    } as unknown as APIGatewayEvent;
+    const response = await getById(event);
+    expect(response.statusCode).to.equal(404);
   });
 });
