@@ -82,10 +82,10 @@
     }
   },
   "nyc": {
-    "statements": "97",
-    "branches": "93",
+    "statements": "100",
+    "branches": "100",
     "functions": "100",
-    "lines": "97",
+    "lines": "100",
     "exclude": [
       "**/*.spec.ts",
       "**/aws/*.ts"
