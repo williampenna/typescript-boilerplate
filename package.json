@@ -24,7 +24,7 @@
   "husky": {
     "hooks": {
       "pre-commit": "concurrently -r \"lint-staged\" \"yarn gendoc && git add docs/project\" \"yarn tsc --noEmit\"",
-      "pre-push": "concurrently -r \"yarn check:cov\" \"cfn-lint templates/*.yaml\"",
+      "pre-push": "concurrently -r \"yarn check:cov\"",
       "prepare-commit-msg": "exec < /dev/tty && ./node_modules/.bin/git-cz --hook || true",
       "post-merge": "yarn"
     }
