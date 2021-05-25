@@ -55,7 +55,7 @@ describe('Tests suite - Plan Service.', () => {
     expect(response.statusCode).to.equal(400);
   });
 
-  it('FAIL: Should register customer with name less than 50 characters', async () => {
+  it('SUCCESS: Should register customer with name less than 50 characters', async () => {
     const customerBody = {
       body: JSON.stringify({
         name: 'WILL_TEST_TDDKJDSAFKJDSKFJASDKFJDSKFJDFJÇDSJFÇKLADSJFLKADSJFLKJASDFKLJSDLFKAJSL',
