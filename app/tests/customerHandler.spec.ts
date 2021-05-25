@@ -48,14 +48,14 @@ describe('Tests suite - Plan Service.', () => {
   it('FAIL: Should register customer with no date of birth', async () => {
     const customerBody = {
       body: JSON.stringify({
-        date_of_birth: '08/04/1986',
+        name: 'William Cezar',
       }),
     } as unknown as APIGatewayEvent;
     const response = await register(customerBody);
     expect(response.statusCode).to.equal(400);
   });
 
-  it('FAIL: Should register customer with name less than 50 characters', async () => {
+  it('ERROR: Should register customer with name less than 50 characters', async () => {
     const customerBody = {
       body: JSON.stringify({
         name: 'WILL_TEST_TDDKJDSAFKJDSKFJASDKFJDSKFJDFJÇDSJFÇKLADSJFLKADSJFLKJASDFKLJSDLFKAJSL',
@@ -63,6 +63,6 @@ describe('Tests suite - Plan Service.', () => {
       }),
     } as unknown as APIGatewayEvent;
     const response = await register(customerBody);
-    expect(response.statusCode).to.equal(201);
+    expect(response.statusCode).to.equal(400);
   });
 });
